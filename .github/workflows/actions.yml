@@ -1,0 +1,28 @@
+name: run ranked-weekly-race.py
+
+on:
+  schedule:
+    - cron: '2/10 0-2 * * 1'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v4
+
+      - name: setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: install dependencies
+        run: |
+          pip install requests
+          pip install gspread
+
+      - name: run script
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        run: python ranked-weekly-race.py
