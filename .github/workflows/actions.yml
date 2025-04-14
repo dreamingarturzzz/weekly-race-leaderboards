@@ -3,7 +3,7 @@ name: run ranked-weekly-race.py
 on:
   workflow_dispatch:
   schedule:
-    - cron: '2/10 0-2 * * 1'
+    - cron: '2,12,22,32,42,52 0,1,2,13 * * 1'
 
 jobs:
   build:
